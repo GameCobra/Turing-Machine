@@ -58,11 +58,27 @@ def printStrip():
         newList.append(strip[lowestValue + i])
     print(newList)
 
-string = '''#
-_ _ 1 1 >
-_ 1 2 _ >
+string = '''# put the machine instructions here
+0 _ 1 _ >
+_ _ 2 _ >
 #'''
 
+inputString = "0 0 0"
+
+def Inputs():
+    splitInputs = inputString.split(" ")
+    global strip
+    if len(splitInputs) < 0:
+        return
+    if len(splitInputs) == 1:
+        strip[0] = splitInputs[0]
+        return
+    strip[0] = splitInputs[0]
+    splitInputs.pop(0)
+    for i in range(len(splitInputs)):
+        strip.update({i + 1 : splitInputs[i]})
+
+Inputs()
 parseRuleString(string)
 for i in range(10):
     run()
