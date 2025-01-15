@@ -1,10 +1,33 @@
+###### Controls Here!
+mode = "Debug" #Modes: Debug, Watch
+state = "S" #Starting state of the matchine
+
+#? [cell] [State] [New Cell] [New State] [Direction (>, <, -)]
+#! seperate all inputs with spaces
+string = '''# put the machine instructions here
+0 S C 0 >
+1 S C 1 >
+1 0 C Y >
+0 0 C N >
+1 1 C N >
+0 1 C Y >
+_ Y Y D E
+_ N N D E
+#'''
+
+inputString = "1 1" 
+#The starting state of the machine
+
+######! End Controls
+
 strip = {0 : "_"}
 index = 0
-state = "S"
 lowestValue = 0
-
-
+lastUsedRule = -1
 rules = []
+
+
+
 
 def moveHead(amount : int):
     global index
@@ -39,9 +62,13 @@ def parseRuleString(value : str):
             rules.append(V)
 
 def checkRules():
+    global lastUsedRule
     for i in range(len(rules)):
         if rules[i][0] == getHeadValue() and rules[i][1] == state:
+            lastUsedRule = i
             return i
+    print("Rule error")
+    printData()
     raise Exception(f"no rule: {getHeadValue()} : {state}")
 
 def run():
@@ -51,29 +78,19 @@ def run():
     strip[index] = rules[value][2]
     state = rules[value][3]
     if rules[value][4] == "E":
-        print("End: ")
-        printStrip()
+        print("End")
+        printData()
         exit()
     moveHead(rules[value][4])
 
-def printStrip():
+def printData():
     newList = []
     for i in range(len(strip)):
         newList.append(strip[lowestValue + i])
-    print(newList)
-
-string = '''# put the machine instructions here
-0 S C 0 >
-1 S C S >
-1 0 C Y >
-0 0 C N >
-1 1 C N >
-0 1 C Y >
-_ Y Y D E
-_ N N D E
-#'''
-
-inputString = "0 0"
+    if mode == "Debug":
+        print(f"Tape: {newList} | LV: {lowestValue} | State: {state} | LSR: {lastUsedRule + 1}")
+    elif mode == "Watch":
+        print(newList)
 
 def Inputs():
     splitInputs = inputString.split(" ")
@@ -91,6 +108,7 @@ def Inputs():
 Inputs()
 parseRuleString(string)
 for i in range(100000):
-    printStrip()
+    printData()
     run()
-printStrip()
+print("Time out")
+printData()
