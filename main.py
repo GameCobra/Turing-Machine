@@ -1,6 +1,6 @@
 strip = {0 : "_"}
 index = 0
-state = "_"
+state = "S"
 lowestValue = 0
 
 
@@ -42,7 +42,7 @@ def checkRules():
     for i in range(len(rules)):
         if rules[i][0] == getHeadValue() and rules[i][1] == state:
             return i
-    raise Exception("no rule")
+    raise Exception(f"no rule: {getHeadValue()} : {state}")
 
 def run():
     global strip
@@ -50,6 +50,10 @@ def run():
     value = checkRules()
     strip[index] = rules[value][2]
     state = rules[value][3]
+    if rules[value][4] == "E":
+        print("End: ")
+        printStrip()
+        exit()
     moveHead(rules[value][4])
 
 def printStrip():
@@ -59,11 +63,17 @@ def printStrip():
     print(newList)
 
 string = '''# put the machine instructions here
-0 _ 1 _ >
-_ _ 2 _ >
+0 S C 0 >
+1 S C S >
+1 0 C Y >
+0 0 C N >
+1 1 C N >
+0 1 C Y >
+_ Y Y D E
+_ N N D E
 #'''
 
-inputString = "0 0 0"
+inputString = "0 0"
 
 def Inputs():
     splitInputs = inputString.split(" ")
@@ -80,6 +90,7 @@ def Inputs():
 
 Inputs()
 parseRuleString(string)
-for i in range(10):
+for i in range(100000):
+    printStrip()
     run()
 printStrip()
