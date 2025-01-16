@@ -1,5 +1,6 @@
 ###### Controls Here!
 mode = "Debug" #Modes: Debug, Watch
+compactVisulaization = False
 state = "S" #Starting state of the matchine
 
 #? [cell] [State] [New Cell] [New State] [Direction (>, <, -)]

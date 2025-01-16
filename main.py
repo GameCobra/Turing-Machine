@@ -1,14 +1,25 @@
 ###### Controls Here!
 mode = "Debug" #Modes: Debug, Watch
-state = "S" #Starting state of the matchine
+compactVisulaization = False
+state = "M>" #Starting state of the matchine
 
 #? [cell] [State] [New Cell] [New State] [Direction (>, <, -)]
 #! seperate all inputs with spaces
 string = '''# put the machine instructions here
-
+_ M> _ M> >
+Xor M> Xor Xor> >
+1 Xor> 1 1 >
+0 Xor> 0 0 >
+1 1 1 N >
+1 0 1 Y >
+0 0 0 N >
+0 1 0 Y >
+_ Y Y M> >
+_ N N M> >
+E ? E E E
 #'''
 
-inputString = "1 1" 
+inputString = "_ _ _ _ _ Xor 1 1 _ E" 
 #The starting state of the machine
 
 ######! End Controls
@@ -57,12 +68,18 @@ def parseRuleString(value : str):
 def checkRules():
     global lastUsedRule
     for i in range(len(rules)):
+        if rules[i][0] == getHeadValue() and rules[i][1] == "?":
+            lastUsedRule = i
+            return i
+        if rules[i][0] == "?" and rules[i][1] == state:
+            lastUsedRule = i
+            return i
         if rules[i][0] == getHeadValue() and rules[i][1] == state:
             lastUsedRule = i
             return i
     print("Rule error")
     printData()
-    raise Exception(f"no rule: {getHeadValue()} : {state}")
+    raise Exception(f"no rule: Head: {getHeadValue()} : State: {state}")
 
 def run():
     global strip
@@ -79,7 +96,13 @@ def run():
 def printData():
     newList = []
     for i in range(len(strip)):
-        newList.append(strip[lowestValue + i])
+        if i == index:
+            newList.append(f"[{strip[lowestValue + i]}]")
+        else:
+            if compactVisulaization == False:
+                newList.append(f" {strip[lowestValue + i]} ")
+            else:
+                newList.append(f" {strip[lowestValue + i]} ")
     if mode == "Debug":
         print(f"Tape: {newList} | LV: {lowestValue} | State: {state} | LSR: {lastUsedRule + 1}")
     elif mode == "Watch":
