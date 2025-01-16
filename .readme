@@ -1,0 +1,7 @@
+# This is a Turing Machine coded in python
+It is designed so that I could teach about Turing Machines.
+I was not particularly happy with the existing ones so I decided to make my own.
+It is designed to be easy-ish to use while remaining in a single file so that it can be used in many free online compilers.
+
+You are free to use this program:
+To use it you must modify the program at the begining of the main.py file, that holds the Turing Machine rule set and starting conditions

@@ -5,14 +5,7 @@ state = "S" #Starting state of the matchine
 #? [cell] [State] [New Cell] [New State] [Direction (>, <, -)]
 #! seperate all inputs with spaces
 string = '''# put the machine instructions here
-0 S C 0 >
-1 S C 1 >
-1 0 C Y >
-0 0 C N >
-1 1 C N >
-0 1 C Y >
-_ Y Y D E
-_ N N D E
+
 #'''
 
 inputString = "1 1" 
