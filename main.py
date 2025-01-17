@@ -1,38 +1,33 @@
 ###### Controls Here!
-state = "M>" #Starting state of the matchine
+state = "SS" #Starting state of the matchine
 
 #? [cell] [State] [New Cell] [New State] [Direction (>, <, -)]
 #? seperate all inputs with spaces
 string = '''# put the machine instructions here
-#Move if blank spaces
-_ M> _ M> >
-#When it encounters numbers
-0 M> 0 A0 >
-1 M> 1 A1 >
-#Second round of numbers
-0 A0 0 B0 >
-0 A1 0 B1 >
-1 A0 1 B1 >
-1 A1 1 B2 >
-#Therd set of numbers
-0 B0 0 C0 >
-1 B0 1 C1 >
-0 B1 0 C1 >
-1 B1 1 C2 >
-0 B2 0 C2 >
-1 B2 1 C3 >
-#Writing the result 1
-_ C0 0 D0 >
-_ C1 1 D0 >
-_ C2 0 D1 >
-_ C3 1 D1 >
-#Writing the result 2
-_ D0 0 M> >
-_ D1 1 M> >
+#Offset start by 1 cell
+P SS P S >
+#Add space to the next cell
+0 S 0 G >
+1 S 1 G >
+0 G N g0 >
+1 G N g1 >
+#Shift everything over
+0 g0 0 g0 >
+0 g1 1 g0 >
+1 g0 0 g1 >
+1 g1 1 g1 >
+#return
+_ g0 0 <R <
+_ g1 1 <R <
+0 <R 0 <R <
+1 <R 1 <R <
+N <R N S >
+#End
+_ G E E -
 E ? E E E
 #'''
 
-inputString = "_ 1 0 1 _ _ _ _ E" 
+inputString = "P 0 1 0 1 0 1 0 1 1 0 1 0 1 0 1 0" 
 #The starting state of the machine
 
 ######! End Controls / start Mode
