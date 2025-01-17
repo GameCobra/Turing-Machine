@@ -1,0 +1,21 @@
+###### Controls Here!
+state = "M>" #Starting state of the matchine
+
+#? [cell] [State] [New Cell] [New State] [Direction (>, <, -)]
+#? seperate all inputs with spaces
+string = '''# put the machine instructions here
+_ M> _ M> >
+Xor M> Xor Xor> >
+1 Xor> 1 1 >
+0 Xor> 0 0 >
+1 1 1 N >
+1 0 1 Y >
+0 0 0 N >
+0 1 0 Y >
+_ Y Y M> >
+_ N N M> >
+E ? E E E
+#'''
+
+inputString = "_ _ _ _ _ Xor 1 1 _ E" 
+#The starting state of the machine

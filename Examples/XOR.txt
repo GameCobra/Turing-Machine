@@ -1,10 +1,8 @@
 ###### Controls Here!
-mode = "Debug" #Modes: Debug, Watch
-compactVisulaization = False
 state = "S" #Starting state of the matchine
 
 #? [cell] [State] [New Cell] [New State] [Direction (>, <, -)]
-#! seperate all inputs with spaces
+#? seperate all inputs with spaces
 string = '''# put the machine instructions here
 0 S C 0 >
 1 S C 1 >
@@ -18,5 +16,3 @@ _ N N D E
 
 inputString = "1 1" 
 #The starting state of the machine
-
-######! End Controls

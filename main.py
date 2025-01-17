@@ -1,28 +1,47 @@
 ###### Controls Here!
-mode = "Debug" #Modes: Debug, Watch
-compactVisulaization = False
 state = "M>" #Starting state of the matchine
 
 #? [cell] [State] [New Cell] [New State] [Direction (>, <, -)]
-#! seperate all inputs with spaces
+#? seperate all inputs with spaces
 string = '''# put the machine instructions here
+#Move if blank spaces
 _ M> _ M> >
-Xor M> Xor Xor> >
-1 Xor> 1 1 >
-0 Xor> 0 0 >
-1 1 1 N >
-1 0 1 Y >
-0 0 0 N >
-0 1 0 Y >
-_ Y Y M> >
-_ N N M> >
+#When it encounters numbers
+0 M> 0 A0 >
+1 M> 1 A1 >
+#Second round of numbers
+0 A0 0 B0 >
+0 A1 0 B1 >
+1 A0 1 B1 >
+1 A1 1 B2 >
+#Therd set of numbers
+0 B0 0 C0 >
+1 B0 1 C1 >
+0 B1 0 C1 >
+1 B1 1 C2 >
+0 B2 0 C2 >
+1 B2 1 C3 >
+#Writing the result 1
+_ C0 0 D0 >
+_ C1 1 D0 >
+_ C2 0 D1 >
+_ C3 1 D1 >
+#Writing the result 2
+_ D0 0 M> >
+_ D1 1 M> >
 E ? E E E
 #'''
 
-inputString = "_ _ _ _ _ Xor 1 1 _ E" 
+inputString = "_ 1 0 1 _ _ _ _ E" 
 #The starting state of the machine
 
-######! End Controls
+######! End Controls / start Mode
+mode = "Debug" #Modes: Debug, Watch
+compactVisulaization = False
+######! End Mode
+
+
+
 
 strip = {0 : "_"}
 index = 0
