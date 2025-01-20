@@ -22,8 +22,27 @@ _ g1 1 <R <
 0 <R 0 <R <
 1 <R 1 <R <
 N <R N S >
+#Return 2
+_ G _ <R2 <
+0 <R2 0 <R2 <
+1 <R2 1 <R2 <
+N <R2 NN G2 >
+0 G2 NN gg0 >
+1 G2 NN gg1 >
+0 gg0 0 gg0 >
+1 gg0 0 gg1 >
+0 gg1 1 gg0 >
+1 gg1 1 gg1 >
+NN gg0 0 ggNN >
+NN gg1 1 ggNN >
+0 ggNN NN gg0 >
+1 ggNN NN gg1 >
+NN ggNN NN ggNN >
+NN <R2 NN <R2 <
+_ gg0 0 <R2 <
+_ gg1 1 <R2 <
+P <R2 E E -
 #End
-_ G E E -
 E ? E E E
 #'''
 
