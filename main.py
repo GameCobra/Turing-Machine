@@ -41,7 +41,31 @@ NN ggNN NN ggNN >
 NN <R2 NN <R2 <
 _ gg0 0 <R2 <
 _ gg1 1 <R2 <
-P <R2 E E -
+#Return to end
+P <R2 P R3> >
+0 R3> 0 R3> >
+1 R3> 0 R3> >
+NN R3> NNN R3>N >
+NN R3>N NN R3> >
+_ R3> _ <R4 <
+0 <R4 0 <R4 <
+1 <R4 1 <R4 <
+NNN <R4 NNN <R4 <
+NN <R4 NNN GGG >
+0 GGG NNN ggg0 >
+1 GGG NNN ggg1 >
+0 ggg0 0 ggg0 >
+1 ggg0 0 ggg1 >
+0 ggg1 1 ggg0 >
+1 ggg1 1 ggg1 >
+NNN ggg0 0 gggNNN >
+NNN ggg1 1 gggNNN >
+0 gggNNN NNN ggg0 >
+1 gggNNN NNN ggg1 >
+NNN gggNNN NNN gggNNN >
+_ ggg0 0 <R4 <
+_ ggg1 1 <R4 <
+P <R4 E E -
 #End
 E ? E E E
 #'''
@@ -137,7 +161,7 @@ def printData():
             else:
                 newList.append(f" {strip[lowestValue + i]} ")
     if mode == "Debug":
-        print(f"Tape: {newList} | LV: {lowestValue} | State: {state} | LSR: {lastUsedRule + 1}")
+        print(f"Tape: {newList} | LV: {lowestValue} | State: {state} | LUR: {lastUsedRule + 1}")
     elif mode == "Watch":
         print(newList)
 
